@@ -459,7 +459,7 @@
       let isPlaying = false;
       musicBtn.addEventListener("click", () => {
         if (!isPlaying) {
-          music.currentTime = 0; // optional start
+          music.currentTime = 7; // optional start
           music.play().catch(() => {
             console.log("User interaction required for mobile audio");
           });
