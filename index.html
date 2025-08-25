@@ -1,183 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glam by Saloni - Makeup Artist</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-    body { font-family: "Arial", sans-serif; color: #f0e6e0; background: #1a1a1a; }
-    a { text-decoration: none; }
-
-    /* Navigation */
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: #3b2f2f; position: sticky; top: 0; z-index: 1000; }
-    nav strong { font-size: 1.5rem; }
-    .dropdown { position: relative; display: inline-block; }
-    .dropbtn { background: #3b2f2f; color: #f0e6e0; padding: 12px 20px; font-size: 21px; border: none; cursor: pointer; border-radius: 25px; transition: 0.3s; }
-    .dropbtn:hover { background: #ffb88c; color: #3b2f2f; }
-    .dropdown-content { display: none; position: absolute; right: 0; background-color: #3b2f2f; min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.3); border-radius: 10px; z-index: 1000; overflow: hidden; }
-    .dropdown-content a { color: #f0e6e0; padding: 12px 16px; text-decoration: none; display: block; transition: 0.3s; }
-    .dropdown-content a:hover { background-color: #ffb88c; color: #3b2f2f; }
-
-    /* Desktop hover */
-    @media (min-width: 769px) { .dropdown:hover .dropdown-content { display: block; } }
-
-    /* Mobile click */
-    .dropdown.show .dropdown-content { display: block; }
-
-    /* Optional: full width dropdown on mobile */
-    @media (max-width: 768px) {
-      nav { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .dropbtn { width: 100%; text-align: left; }
-      .dropdown-content { right: auto; left: 0; width: 100%; border-radius: 0 0 10px 10px; }
-    }
-
-    /* Hero */
-    .hero { background: url("https://i.pinimg.com/originals/72/e7/ee/72e7ee518f7d71c79e2be30b7c9b3d76.jpg") center/cover no-repeat; height: 90vh; display: flex; justify-content: center; align-items: center; text-align: center; color: #f0e6e0; flex-direction: column; animation: fadeIn 1.5s ease-in-out; position: relative; }
-    .hero::after { content: ""; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(26,26,26,0.6); }
-    .hero h1, .hero p, .hero a { position: relative; z-index: 1; }
-    .hero h1 { font-size: 3rem; margin-bottom: 20px; text-shadow: 2px 2px 8px #000; }
-    .hero p { font-size: 1.5rem; text-shadow: 1px 1px 6px #000; }
-    .hero a { margin-top: 20px; padding: 12px 30px; background: #3b2f2f; color: #ffb88c; font-weight: bold; border-radius: 25px; transition: 0.3s; }
-    .hero a:hover { background: #ffb88c; color: #3b2f2f; }
-
-    section { padding: 60px 20px; max-width: 1200px; margin: auto; }
-    h2 { text-align: center; margin-bottom: 40px; color: #ffb88c; font-size: 2.2rem; }
-
-    /* Cards */
-    .services, .gallery, .testimonials { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .card, .testimonial-card { background: #3b2f2f; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); flex: 1 1 300px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; color: #f0e6e0; }
-    .card:hover, .testimonial-card:hover { transform: translateY(-10px); box-shadow: 0 6px 25px rgba(0,0,0,0.7); }
-    .card img { max-width: 100%; border-radius: 10px; margin-bottom: 15px; }
-
-    /* About */
-    .about { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; justify-content: center; }
-    .about img { flex: 1 1 300px; border-radius: 15px; max-width: 400px; width: 100%; height: auto; }
-    .about div { flex: 1 1 300px; color: #f0e6e0; }
-
-    /* Contact */
-    .contact { text-align: center; background: #2b1f1f; border-radius: 15px; padding: 40px 20px; }
-    .contact a { display: inline-block; margin: 10px; padding: 12px 25px; background: #ffb88c; color: #3b2f2f; border-radius: 25px; font-weight: bold; transition: 0.3s; }
-    .contact a:hover { background: #3b2f2f; color: #ffb88c; border: 1px solid #ffb88c; }
-
-    /* Footer */
-    footer { text-align: center; padding: 30px 20px; background: #1a1a1a; color: #f0e6e0; margin-top: 40px; }
-
-    /* Music Button */
-    .music-btn { position: fixed; bottom: 30px; right: 30px; background: #ffb88c; border: none; border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; z-index: 1001; }
-    .music-btn:hover { background: #d98b61; transform: scale(1.1); }
-    .music-btn::before { content: "▶"; color: #3b2f2f; font-size: 1.5rem; transition: 0.3s; }
-    .music-btn.paused::before { content: "❚❚"; }
-
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-    @media (max-width: 768px) { .about { flex-direction: column; } .hero h1 { font-size: 2rem; } .hero p { font-size: 1.1rem; } }
-  </style>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <nav>
-    <strong>GLAM BY SALONI</strong>
-    <div class="dropdown">
-      <button class="dropbtn">☰ Menu</button>
-      <div class="dropdown-content">
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#about">About</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Glam by Saloni</h1>
-    <p>Professional Makeup Artist | Enhancing Your Natural Beauty</p>
-    <a href="#contact">Book Now</a>
-  </section>
-
-  <!-- Services -->
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="card"><h3>Bridal Makeup</h3><p>Flawless bridal looks for your special day.</p></div>
-      <div class="card"><h3>Party Makeup</h3><p>Glamorous looks for parties and events.</p></div>
-      <div class="card"><h3>Photoshoot Makeup</h3><p>Professional makeup for photoshoots and modeling.</p></div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <div class="card"><img src="https://i.pinimg.com/736x/f3/66/51/f36651c23c0cabe1105bbce084778d73.jpg" alt="Makeup look 1"><p>Elegant Bridal</p></div>
-      <div class="card"><img src="https://i.pinimg.com/736x/72/62/e6/7262e664ad6f4dbe418637d79a20dbb2.jpg" alt="Makeup look 2"><p>Party Glam</p></div>
-      <div class="card"><img src="https://i.pinimg.com/736x/31/f4/30/31f4300d106f7d96ed58d03cd23ce482.jpg" alt="Makeup look 3"><p>Photoshoot Ready</p></div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="about">
-      <img src="./img/ma.jpg" alt="Saloni Makeup Artist">
-      <div><p>Hello! I'm Saloni, a professional makeup artist with over 5 years of experience in bridal, party, and photoshoot makeup. My passion is enhancing natural beauty and creating stunning looks for every occasion.</p></div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <h2>Testimonials</h2>
-    <div class="testimonials">
-      <div class="testimonial-card">"Saloni made my wedding day so special! My makeup was flawless and lasted all day." – Mahima.</div>
-      <div class="testimonial-card">"Amazing party look! I received so many compliments on my makeup." – Radhika .</div>
-      <div class="testimonial-card">"Professional and talented. Highly recommend for photoshoots." – Rakhi .</div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contact Me</h2>
-    <p>Book your appointment or ask any questions!</p>
-    <a href="mailto:sharmasaloni82822@gmail.com">Email Me</a>
-    <a href="tel:+918966878047">Call Me</a>
-    <a href="https://www.instagram.com/bridalmakeup_hairartist16/" target="_blank">Instagram</a>
-  </section>
-
-  <!-- Footer -->
-  <footer>&copy; 2025 Glam by Saloni. All rights reserved. | Designed with ❤️</footer>
-
-  <!-- Music Button -->
-  <button class="music-btn" id="musicBtn"></button>
-  <audio id="backgroundMusic" loop preload="auto">
-    <source src="./audio/who.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    // Mobile dropdown toggle
-    const dropbtn = document.querySelector(".dropbtn");
-    const dropdown = document.querySelector(".dropdown");
-    dropbtn.addEventListener("click", () => { dropdown.classList.toggle("show"); });
-    window.addEventListener("click", (e) => { if (!dropdown.contains(e.target)) dropdown.classList.remove("show"); });
-
-    // Music button play/pause (user interaction enables mobile playback)
-    const musicBtn = document.getElementById("musicBtn");
-    const music = document.getElementById("backgroundMusic");
-    let isPlaying = false;
-    musicBtn.addEventListener("click", () => {
-      if (!isPlaying) {
-        music.currentTime = 0; // optional start
-        music.play().catch(() => { console.log("User interaction required for mobile audio"); });
-        musicBtn.classList.add("paused");
-      } else {
-        music.pause();
-        musicBtn.classList.remove("paused");
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glam by Saloni - Makeup Artist</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
       }
-      isPlaying = !isPlaying;
-    });
-  </script>
-</body>
+      body {
+        font-family: "Arial", sans-serif;
+        color: #f0e6e0;
+        background: #1a1a1a;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      /* Navigation */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: #3b2f2f;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      nav strong {
+        font-size: 1.5rem;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropbtn {
+        background: #3b2f2f;
+        color: #f0e6e0;
+        padding: 12px 20px;
+        font-size: 21px;
+        border: none;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: 0.3s;
+      }
+      .dropbtn:hover {
+        background: #ffb88c;
+        color: #3b2f2f;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #3b2f2f;
+        min-width: 180px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        z-index: 1000;
+        overflow: hidden;
+      }
+      .dropdown-content a {
+        color: #f0e6e0;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: 0.3s;
+      }
+      .dropdown-content a:hover {
+        background-color: #ffb88c;
+        color: #3b2f2f;
+      }
+
+      /* Desktop hover */
+      @media (min-width: 769px) {
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+      }
+
+      /* Mobile click */
+      .dropdown.show .dropdown-content {
+        display: block;
+      }
+
+      /* Optional: full width dropdown on mobile */
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .dropbtn {
+          width: 100%;
+          text-align: left;
+        }
+        .dropdown-content {
+          right: auto;
+          left: 0;
+          width: 100%;
+          border-radius: 0 0 10px 10px;
+        }
+      }
+
+      /* Hero */
+      .hero {
+        background: url("https://i.pinimg.com/originals/72/e7/ee/72e7ee518f7d71c79e2be30b7c9b3d76.jpg")
+          center/cover no-repeat;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #f0e6e0;
+        flex-direction: column;
+        animation: fadeIn 1.5s ease-in-out;
+        position: relative;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 26, 26, 0.6);
+      }
+      .hero h1,
+      .hero p,
+      .hero a {
+        position: relative;
+        z-index: 1;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 8px #000;
+      }
+      .hero p {
+        font-size: 1.5rem;
+        text-shadow: 1px 1px 6px #000;
+      }
+      .hero a {
+        margin-top: 20px;
+        padding: 12px 30px;
+        background: #3b2f2f;
+        color: #ffb88c;
+        font-weight: bold;
+        border-radius: 25px;
+        transition: 0.3s;
+      }
+      .hero a:hover {
+        background: #ffb88c;
+        color: #3b2f2f;
+      }
+
+      section {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #ffb88c;
+        font-size: 2.2rem;
+      }
+
+      /* Cards */
+      .services,
+      .gallery,
+      .testimonials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .card,
+      .testimonial-card {
+        background: #3b2f2f;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        flex: 1 1 300px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        color: #f0e6e0;
+      }
+      .card:hover,
+      .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+      }
+      .card img {
+        max-width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+
+      /* About */
+      .about {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 30px;
+        justify-content: center;
+      }
+      .about img {
+        flex: 1 1 300px;
+        border-radius: 15px;
+        max-width: 400px;
+        width: 100%;
+        height: auto;
+      }
+      .about div {
+        flex: 1 1 300px;
+        color: #f0e6e0;
+      }
+
+      /* Contact */
+      .contact {
+        text-align: center;
+        background: #2b1f1f;
+        border-radius: 15px;
+        padding: 40px 20px;
+      }
+      .contact a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 25px;
+        background: #ffb88c;
+        color: #3b2f2f;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .contact a:hover {
+        background: #3b2f2f;
+        color: #ffb88c;
+        border: 1px solid #ffb88c;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 30px 20px;
+        background: #1a1a1a;
+        color: #f0e6e0;
+        margin-top: 40px;
+      }
+
+      /* Music Button */
+      .music-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #ffb88c;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: 0.3s;
+        z-index: 1001;
+      }
+      .music-btn:hover {
+        background: #d98b61;
+        transform: scale(1.1);
+      }
+      .music-btn::before {
+        content: "▶";
+        color: #3b2f2f;
+        font-size: 1.5rem;
+        transition: 0.3s;
+      }
+      .music-btn.paused::before {
+        content: "❚❚";
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .about {
+          flex-direction: column;
+        }
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero p {
+          font-size: 1.1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <strong>GLAM BY SALONI</strong>
+      <div class="dropdown">
+        <button class="dropbtn">☰ Menu</button>
+        <div class="dropdown-content">
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#about">About</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Glam by Saloni</h1>
+      <p>Professional Makeup Artist | Enhancing Your Natural Beauty</p>
+      <a href="#contact">Book Now</a>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services">
+        <div class="card">
+          <h3>Bridal Makeup</h3>
+          <p>Flawless bridal looks for your special day.</p>
+        </div>
+        <div class="card">
+          <h3>Party Makeup</h3>
+          <p>Glamorous looks for parties and events.</p>
+        </div>
+        <div class="card">
+          <h3>Photoshoot Makeup</h3>
+          <p>Professional makeup for photoshoots and modeling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <div class="card">
+          <img
+            src="https://i.pinimg.com/736x/f3/66/51/f36651c23c0cabe1105bbce084778d73.jpg"
+            alt="Makeup look 1"
+          />
+          <p>Elegant Bridal</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://i.pinimg.com/736x/72/62/e6/7262e664ad6f4dbe418637d79a20dbb2.jpg"
+            alt="Makeup look 2"
+          />
+          <p>Party Glam</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://i.pinimg.com/736x/31/f4/30/31f4300d106f7d96ed58d03cd23ce482.jpg"
+            alt="Makeup look 3"
+          />
+          <p>Photoshoot Ready</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about">
+        <img src="./img/ma.jpg" alt="Saloni Makeup Artist" />
+        <div>
+          <p>
+            Hello! I'm Saloni, a professional makeup artist with over 5 years of
+            experience in bridal, party, and photoshoot makeup. My passion is
+            enhancing natural beauty and creating stunning looks for every
+            occasion.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+      <h2>Testimonials</h2>
+      <div class="testimonials">
+        <div class="testimonial-card">
+          "Saloni made my wedding day so special! My makeup was flawless and
+          lasted all day." – Mahima.
+        </div>
+        <div class="testimonial-card">
+          "Amazing party look! I received so many compliments on my makeup." –
+          Radhika .
+        </div>
+        <div class="testimonial-card">
+          "Professional and talented. Highly recommend for photoshoots." – Rakhi
+          .
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <h2>Contact Me</h2>
+      <p>Book your appointment or ask any questions!</p>
+      <a href="mailto:sharmasaloni82822@gmail.com">Email Me</a>
+      <a href="tel:+918966878047">Call Me</a>
+      <a
+        href="https://www.instagram.com/bridalmakeup_hairartist16/"
+        target="_blank"
+        >Instagram</a
+      >
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2025 Glam by Saloni. All rights reserved. | Designed with ❤️
+    </footer>
+
+    <!-- Music Button -->
+    <button class="music-btn" id="musicBtn"></button>
+    <audio id="backgroundMusic" loop preload="auto">
+      <source src="/audio/who.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      // Mobile dropdown toggle
+      const dropbtn = document.querySelector(".dropbtn");
+      const dropdown = document.querySelector(".dropdown");
+      dropbtn.addEventListener("click", () => {
+        dropdown.classList.toggle("show");
+      });
+      window.addEventListener("click", (e) => {
+        if (!dropdown.contains(e.target)) dropdown.classList.remove("show");
+      });
+
+      // Music button play/pause (user interaction enables mobile playback)
+      const musicBtn = document.getElementById("musicBtn");
+      const music = document.getElementById("backgroundMusic");
+      let isPlaying = false;
+      musicBtn.addEventListener("click", () => {
+        if (!isPlaying) {
+          music.currentTime = 0; // optional start
+          music.play().catch(() => {
+            console.log("User interaction required for mobile audio");
+          });
+          musicBtn.classList.add("paused");
+        } else {
+          music.pause();
+          musicBtn.classList.remove("paused");
+        }
+        isPlaying = !isPlaying;
+      });
+    </script>
+  </body>
 </html>
