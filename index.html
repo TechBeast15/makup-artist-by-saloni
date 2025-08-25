@@ -1,157 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glam by Saloni - Makeup Artist</title>
-  <style>
-    /* Reset and base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; background-color: #f8f4f2; scroll-behavior: smooth; }
-    a { text-decoration: none; }
-    
-    /* Navigation */
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: #ff6f91; position: sticky; top: 0; z-index: 1000; }
-    nav a { color: #fff; margin: 0 15px; font-weight: bold; transition: 0.3s; }
-    nav a:hover { color: #ffe5ec; }
-    
-    /* Hero Section */
-    .hero { background: url('https://i.pinimg.com/originals/72/e7/ee/72e7ee518f7d71c79e2be30b7c9b3d76.jpg') center/cover no-repeat; height: 90vh; display: flex; justify-content: center; align-items: center; text-align: center; color: #fff; flex-direction: column; }
-    .hero h1 { font-size: 3rem; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
-    .hero p { font-size: 1.5rem; text-shadow: 1px 1px 6px rgba(0,0,0,0.5); }
-    .hero a { margin-top: 20px; padding: 10px 25px; background: #fff; color: #ff6f91; font-weight: bold; border-radius: 25px; transition: 0.3s; }
-    .hero a:hover { background: #ff6f91; color: #fff; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glam by Saloni - Makeup Artist</title>
+    <style>
+      /* Reset and base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f4f2;
+        scroll-behavior: smooth;
+      }
+      a {
+        text-decoration: none;
+      }
 
-    section { padding: 60px 20px; max-width: 1200px; margin: auto; }
+      /* Navigation */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: #ff6f91;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      nav a {
+        color: #fff;
+        margin: 0 15px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        color: #ffe5ec;
+      }
 
-    h2 { text-align: center; margin-bottom: 40px; color: #ff6f91; font-size: 2.2rem; }
+      /* Hero Section */
+      .hero {
+        background: url("https://i.pinimg.com/originals/72/e7/ee/72e7ee518f7d71c79e2be30b7c9b3d76.jpg")
+          center/cover no-repeat;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      }
+      .hero p {
+        font-size: 1.5rem;
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+      }
+      .hero a {
+        margin-top: 20px;
+        padding: 10px 25px;
+        background: #fff;
+        color: #ff6f91;
+        font-weight: bold;
+        border-radius: 25px;
+        transition: 0.3s;
+      }
+      .hero a:hover {
+        background: #ff6f91;
+        color: #fff;
+      }
 
-    /* Services & Gallery */
-    .services, .gallery, .testimonials { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); flex: 1 1 300px; text-align: center; transition: transform 0.3s; }
-    .card:hover { transform: translateY(-10px); }
-    .card img { max-width: 100%; border-radius: 10px; margin-bottom: 15px; }
+      section {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
 
-    /* About */
-    .about { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; }
-    .about img { flex: 1 1 400px; border-radius: 15px; }
-    .about div { flex: 1 1 400px; }
-    
-    /* Testimonials */
-    .testimonial-card { background: #ffe5ec; padding: 20px; border-radius: 15px; flex: 1 1 300px; text-align: center; font-style: italic; }
+      h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #ff6f91;
+        font-size: 2.2rem;
+      }
 
-    /* Contact */
-    .contact { text-align: center; background: #ffeff4; border-radius: 15px; }
-    .contact a { display: inline-block; margin: 10px; padding: 12px 25px; background: #ff6f91; color: #fff; border-radius: 25px; font-weight: bold; transition: 0.3s; }
-    .contact a:hover { background: #ff3f6f; }
+      /* Services & Gallery */
+      .services,
+      .gallery,
+      .testimonials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        flex: 1 1 300px;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+      }
+      .card img {
+        max-width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
 
-    footer { text-align: center; padding: 30px 20px; background: #333; color: #fff; margin-top: 40px; }
+      /* About */
+      .about {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 30px;
+      }
+      .about img {
+        flex: 1 1 300px;
+        border-radius: 15px;
+        max-width: 400px; /* <-- Limit image width */
+        width: 100%; /* <-- Makes it responsive */
+        height: auto; /* <-- Maintains aspect ratio */
+      }
 
-    @media(max-width:768px){
-      nav { flex-direction: column; gap: 10px; }
-      .about { flex-direction: column; }
-    }
-  </style>
-</head>
-<body>
+      .about div {
+        flex: 1 1 400px;
+      }
 
-  <!-- Navigation -->
-  <nav>
-    <div><strong>Glam by Saloni</strong></div>
-    <div>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#about">About</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+      /* Testimonials */
+      .testimonial-card {
+        background: #ffe5ec;
+        padding: 20px;
+        border-radius: 15px;
+        flex: 1 1 300px;
+        text-align: center;
+        font-style: italic;
+      }
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Glam by Saloni</h1>
-    <p>Professional Makeup Artist | Enhancing Your Natural Beauty</p>
-    <a href="#contact">Book Now</a>
-  </section>
+      /* Contact */
+      .contact {
+        text-align: center;
+        background: #ffeff4;
+        border-radius: 15px;
+      }
+      .contact a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 25px;
+        background: #ff6f91;
+        color: #fff;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .contact a:hover {
+        background: #ff3f6f;
+      }
 
-  <!-- Services -->
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="card">
-        <h3>Bridal Makeup</h3>
-        <p>Flawless bridal looks for your special day.</p>
-      </div>
-      <div class="card">
-        <h3>Party Makeup</h3>
-        <p>Glamorous looks for parties and events.</p>
-      </div>
-      <div class="card">
-        <h3>Photoshoot Makeup</h3>
-        <p>Professional makeup for photoshoots and modeling.</p>
-      </div>
-    </div>
-  </section>
+      footer {
+        text-align: center;
+        padding: 30px 20px;
+        background: #333;
+        color: #fff;
+        margin-top: 40px;
+      }
 
-  <!-- Gallery -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <div class="card">
-        <img src="https://i.pinimg.com/736x/f3/66/51/f36651c23c0cabe1105bbce084778d73.jpg" alt="Makeup look 1">
-        <p>Elegant Bridal</p>
-      </div>
-      <div class="card">
-        <img src="https://i.pinimg.com/736x/72/62/e6/7262e664ad6f4dbe418637d79a20dbb2.jpg" alt="Makeup look 2">
-        <p>Party Glam</p>
-      </div>
-      <div class="card">
-        <img src="https://i.pinimg.com/736x/31/f4/30/31f4300d106f7d96ed58d03cd23ce482.jpg" alt="Makeup look 3">
-        <p>Photoshoot Ready</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="about">
-      <img src="https://i.pinimg.com/736x/b2/53/a1/b253a1b2de122bf90047ceff9b51961b.jpg" alt="Saloni Makeup Artist">
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .about {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div><strong>Glam by Saloni</strong></div>
       <div>
-        <p>Hello! I'm Saloni, a professional makeup artist with over 5 years of experience in bridal, party, and photoshoot makeup. My passion is enhancing natural beauty and creating stunning looks for every occasion.</p>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
       </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <h2>Testimonials</h2>
-    <div class="testimonials">
-      <div class="testimonial-card">
-        "Saloni made my wedding day so special! My makeup was flawless and lasted all day." – Priya K.
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Glam by Saloni</h1>
+      <p>Professional Makeup Artist | Enhancing Your Natural Beauty</p>
+      <a href="#contact">Book Now</a>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services">
+        <div class="card">
+          <h3>Bridal Makeup</h3>
+          <p>Flawless bridal looks for your special day.</p>
+        </div>
+        <div class="card">
+          <h3>Party Makeup</h3>
+          <p>Glamorous looks for parties and events.</p>
+        </div>
+        <div class="card">
+          <h3>Photoshoot Makeup</h3>
+          <p>Professional makeup for photoshoots and modeling.</p>
+        </div>
       </div>
-      <div class="testimonial-card">
-        "Amazing party look! I received so many compliments on my makeup." – Anjali R.
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <div class="card">
+          <img
+            src="https://i.pinimg.com/736x/f3/66/51/f36651c23c0cabe1105bbce084778d73.jpg"
+            alt="Makeup look 1"
+          />
+          <p>Elegant Bridal</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://i.pinimg.com/736x/72/62/e6/7262e664ad6f4dbe418637d79a20dbb2.jpg"
+            alt="Makeup look 2"
+          />
+          <p>Party Glam</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://i.pinimg.com/736x/31/f4/30/31f4300d106f7d96ed58d03cd23ce482.jpg"
+            alt="Makeup look 3"
+          />
+          <p>Photoshoot Ready</p>
+        </div>
       </div>
-      <div class="testimonial-card">
-        "Professional and talented. Highly recommend for photoshoots." – Riya S.
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about">
+        <img
+          src="https://i.pinimg.com/736x/b2/53/a1/b253a1b2de122bf90047ceff9b51961b.jpg"
+          alt="Saloni Makeup Artist"
+        />
+        <div>
+          <p>
+            Hello! I'm Saloni, a professional makeup artist with over 5 years of
+            experience in bridal, party, and photoshoot makeup. My passion is
+            enhancing natural beauty and creating stunning looks for every
+            occasion.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contact Me</h2>
-    <p>Book your appointment or ask any questions!</p>
-    <a href="mailto:sharmasaloni82822@gmail.com">Email Me</a>
-    <a href="tel:+918966878047">Call Me</a>
-    <a href="https://www.instagram.com/bridalmakeup_hairartist16/" target="_blank">Instagram</a>
-  </section>
+    <!-- Testimonials -->
+    <section id="testimonials">
+      <h2>Testimonials</h2>
+      <div class="testimonials">
+        <div class="testimonial-card">
+          "Saloni made my wedding day so special! My makeup was flawless and
+          lasted all day." – Priya K.
+        </div>
+        <div class="testimonial-card">
+          "Amazing party look! I received so many compliments on my makeup." –
+          Anjali R.
+        </div>
+        <div class="testimonial-card">
+          "Professional and talented. Highly recommend for photoshoots." – Riya
+          S.
+        </div>
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Glam by Saloni. All rights reserved. | Designed with ❤️
-  </footer>
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <h2>Contact Me</h2>
+      <p>Book your appointment or ask any questions!</p>
+      <a href="mailto:sharmasaloni82822@gmail.com">Email Me</a>
+      <a href="tel:+918966878047">Call Me</a>
+      <a
+        href="https://www.instagram.com/bridalmakeup_hairartist16/"
+        target="_blank"
+        >Instagram</a
+      >
+    </section>
 
-</body>
+    <!-- Footer -->
+    <footer>
+      &copy; 2025 Glam by Saloni. All rights reserved. | Designed with ❤️
+    </footer>
+  </body>
 </html>
